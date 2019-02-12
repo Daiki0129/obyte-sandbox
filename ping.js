@@ -55,7 +55,7 @@ eventBus.on('my_transactions_became_stable',(arrUnits)=>{
       let deviceAddress = assocMyAddressToDeviceAddress[row.address];
       if(row.asset === null && deviceAddress){
         headlessWallet.sendAllBytesFromAddress(row.address,assocDeviceAddressToPeerAddress[deviceAddress],deviceAddress,(err,unit)=>{
-          if(err) device,sendMessageToDevice(deviceAddress,'text', 'Oops, there\'s been a mistake. : ' + err);
+          if(err) device,sendMessageToDevice(deviceAddress,'text', 'Oops, theres been a mistake. : ' + err);
 
           device.sendMessageToDevice(deviceAddress, 'text', 'I sent back your payment! Unit: ' + unit);
           return true;
