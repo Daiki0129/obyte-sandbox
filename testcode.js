@@ -656,7 +656,7 @@ function handleText(from_address, text, onUnknown){
          //I2ADHGP4HL6J37NQAD73J7E5SKFIXJOTはタイムスタンプオラクルのアドレスです。
        ]],
        ['and', [
-         ['address', '0DIKAFI6RKYNODC5WBDYEL33DNHPOGVKS'], //myaddress
+         ['address', 'MA24UKYMML45QVGOPL32FQX3NPR4BLUK'], //myaddress
          ['in data feed', [
            ['I2ADHGP4HL6J37NQAD73J7E5SKFIXJOT'], 'timestamp', '>', Date.now()
          ]]
@@ -670,7 +670,7 @@ function handleText(from_address, text, onUnknown){
          device_address: '0DQWV442R4DJH2DSMFSWZ6GTB3SZZFHP2' //user_device_address
        },
        'r.1.0': {
-         address: '0DIKAFI6RKYNODC5WBDYEL33DNHPOGVKS', //myaddress
+         address: 'MA24UKYMML45QVGOPL32FQX3NPR4BLUK', //myaddress
          member_signing_path: 'r', // unused, should be always 'r'
          device_address: device.getMyDeviceAddress()
        }
@@ -686,7 +686,7 @@ function handleText(from_address, text, onUnknown){
          //1000は相手に要求する支払額。任意の値に変更可能
          var arrPayments = [{
            address: shared_address,
-           amount: 1000,
+           amount: 1,
            asset: 'base'
          }];
          var assocDefinitions = {};
@@ -706,6 +706,26 @@ function handleText(from_address, text, onUnknown){
        }
      });
      break;
+
+    case 'mail':
+     let opts = {
+       asset: null,
+       amount: 1, // bytes
+       to_address: "dy@block-base.co",
+       email_subject: "Payment in textcoin"
+     };
+
+     issueChangeAddressAndSendMultiPayment(opts, (err, unit, assocMnemonics) => {
+      console.log("opts===========")
+      console.log(opts)
+      console.log("err=============")
+      console.log(err)
+      console.log("uint")
+      console.log(unit)
+      console.log("assocMnemonics=============")
+      console.log(assocMnemonics)
+     });
+		break;
 
      //ここから*********
      case 'hoge':
