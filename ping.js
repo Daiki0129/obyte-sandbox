@@ -65,8 +65,6 @@ eventBus.on('my_transactions_became_stable',(arrUnits)=>{
   })
 })
 
-
-
 process.on("unhandledRejection", up => {
   throw up;
 });
