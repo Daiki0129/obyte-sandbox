@@ -14,7 +14,7 @@ exports.storage = 'sqlite';
 exports.hub = 'byteball.org/bb-test';
 exports.deviceName = 'Bot example';
 exports.permanent_pairing_secret = '0000'; // * allows to pair with any code, the code is passed as 2nd param to the pairing event handler
-exports.control_addresses = [''];
+exports.control_addresses = ['0DIKAFI6RKYNODC5WBDYEL33DNHPOGVKS'];
 exports.payout_address = 'WHERE THE MONEY CAN BE SENT TO';
 
 exports.bIgnoreUnpairRequests = true;

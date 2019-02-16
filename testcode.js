@@ -714,20 +714,14 @@ function handleText(from_address, text, onUnknown){
        to_address: "dy@block-base.co",
        email_subject: "Payment in textcoin"
      };
-
      issueChangeAddressAndSendMultiPayment(opts, (err, unit, assocMnemonics) => {
-      console.log("opts===========")
-      console.log(opts)
-      console.log("err=============")
-      console.log(err)
-      console.log("uint")
-      console.log(unit)
-      console.log("assocMnemonics=============")
-      console.log(assocMnemonics)
+      console.log(opts);
+      console.log(err);
+      console.log(unit);
+      console.log(assocMnemonics);
      });
 		break;
 
-     //ここから*********
      case 'hoge':
      return device.sendMessageToDevice(from_address, 'text', 'hogehoge');
      break;

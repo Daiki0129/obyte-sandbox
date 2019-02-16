@@ -20,23 +20,33 @@ const sort = '&sort=-reviewCount';
 async function handleText(from_address, text, onUnknown){
 
 	text = text.trim();
-	var fields = text.split(/ /);
-
-	var walletDefinedByKeys = require('ocore/wallet_defined_by_keys.js');
   var device = require('ocore/device.js');
-
   const keyword = `&keyword=${text}`
   const getUrl = encodeURI(baseUrl + appId + keyword + sort)
+  const address = '0DIKAFI6RKYNODC5WBDYEL33DNHPOGVKS'
+  console.log(from_address);
 
   await axios.get(getUrl).then((result) => {
-    console.log("=====================response.Items")
-    console.log(result.data.Items[0].Item.itemName)
     result.data.Items.forEach(element => {
-      console.log(element.Item.itemName)
+      var arrPayments = [{
+        address: from_address,
+        amount: 1,
+        asset: 'base'
+      }];
+
+      var objPaymentRequest = {
+        payments: arrPayments,
+      };
+      var paymentJson = JSON.stringify(objPaymentRequest);
+      var paymentJsonBase64 = Buffer(paymentJson).toString('base64');
+      var paymentRequestCode = 'payment:' + paymentJsonBase64;
+      var paymentRequestText = '[your share of payment to the contract](' + paymentRequestCode + ')';
       device.sendMessageToDevice(from_address, 'text', element.Item.itemName);
+      device.sendMessageToDevice(from_address, 'text', paymentRequestText);
+      // device.sendMessageToDevice(from_address, 'text', "Price: " + element.Item.itemPrice);
     });
   }).catch((err) => {
-    device.sendMessageToDevice(from_address, 'text', "そこに誰もいませんよ");
+    device.sendMessageToDevice(from_address, 'text', "ERROR");
   });
 }
 
